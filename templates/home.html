@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+<!-- For Cinzel -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    .brand-font {
+      font-family: 'Playfair Display', serif;
+    }
+    .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        .post-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .no-posts {
+            text-align: center;
+            color: #888;
+            font-size: 20px;
+            margin-top: 100px;
+        }
+        .timestamp {
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          font-size: 0.8rem;
+          color: #a8d0ff; /* very light blue */
+          font-weight: 500;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card {
+          position: relative; /* to position timestamp absolutely inside card */
+          background-color: #fff;
+          padding: 20px;
+          margin-bottom: 20px;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s ease;
+        }
+
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-serif">
+
+  <!-- Header with center title and split nav -->
+  <header class="border-b border-gray-200 py-6 px-6 sticky top-0 bg-white z-50">
+    <div class="max-w-6xl mx-auto grid grid-cols-3 items-center">
+      
+      <!-- Left nav -->
+      <nav class="flex justify-start gap-6 text-sm uppercase tracking-wide font-medium text-gray-600">
+        <a href="#" class="hover:text-black">About</a>
+      </nav>
+
+      <!-- Center title with fancy font -->
+      <div class="text-center">
+        <h1 class="text-3xl font-bold brand-font tracking-wide">KINGSMAN Journal</h1>
+      </div>
+
+      <!-- Right nav -->
+      <nav class="flex justify-end gap-6 text-sm uppercase tracking-wide font-medium text-gray-600">
+        <a href="#" class="hover:text-black">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <div class="container">
+      {% for post in posts %}
+      <div class="card">
+        <div class="timestamp">{{ post.created_at|date:"F j, Y, g:i A" }}</div><br>
+        <div class="post-text">{{ post.text }}</div>
+      </div>
+      {% empty %}
+          <div class="no-posts">No posts yet.</div>
+      {% endfor %}
+    </div>
+    
+
+  </main>
+
+</body>
+</html>
